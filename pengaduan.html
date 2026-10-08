@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Test Koneksi SIDUMAS</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      color: #7b1625;
+    }
+
+    button {
+      background: #7b1625;
+      color: white;
+      border: 0;
+      padding: 13px 20px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #hasil {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 7px;
+      min-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <h1>SIDUMAS</h1>
+
+    <p>
+      Tes koneksi GitHub Pages dengan Google Apps Script
+    </p>
+
+    <button onclick="testKoneksi()">
+      TEST KONEKSI
+    </button>
+
+    <div id="hasil">
+      Belum ada pengujian.
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec";
+
+
+    async function testKoneksi() {
+
+      const hasil = document.getElementById("hasil");
+
+      hasil.innerHTML = "Menghubungkan...";
+
+      try {
+
+        const response = await fetch(API_URL, {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+
+          body: JSON.stringify({
+            action: "test"
+          })
+
+        });
+
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if (data.success) {
+
+          hasil.innerHTML =
+            "✅ " + data.message;
+
+        } else {
+
+          hasil.innerHTML =
+            "❌ " + (data.message || "Koneksi gagal.");
+
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        hasil.innerHTML =
+          "❌ Gagal terhubung ke Apps Script.<br><br>" +
+          error.message;
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
