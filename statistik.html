@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Statistik Pengaduan - SIDUMAS KPU Kabupaten Karimun</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #7b1625;
+      color: white;
+      padding: 18px 25px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .header-title h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header-title p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      opacity: .9;
+    }
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      display: block;
+      padding: 15px 18px;
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #7b1625;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .page-title h2 {
+      margin: 0;
+      color: #7b1625;
+      font-size: 28px;
+    }
+
+    .page-title p {
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .loading {
+      text-align: center;
+      color: #7b1625;
+      font-weight: bold;
+      padding: 40px;
+    }
+
+    .error {
+      display: none;
+      background: #fdecec;
+      color: #a40000;
+      border: 1px solid #f1b5b5;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .statistics {
+      display: none;
+      grid-template-columns:
+        repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    }
+
+    .card-label {
+      color: #666;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .card-number {
+      font-size: 42px;
+      font-weight: bold;
+      color: #7b1625;
+    }
+
+    .refresh {
+      margin: 30px auto 0;
+      display: block;
+      border: none;
+      background: #7b1625;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 7px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .refresh:hover {
+      background: #64111e;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 750px) {
+
+      .statistics {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .header-title h1 {
+        font-size: 17px;
+      }
+
+      .header-title p {
+        font-size: 12px;
+      }
+
+      .nav-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav a {
+        text-align: center;
+        border-bottom: 1px solid #eee;
+      }
+
+      main {
+        margin: 25px auto;
+      }
+
+      .page-title h2 {
+        font-size: 23px;
+      }
+
+      .statistics {
+        grid-template-columns: 1fr;
+      }
+
+      .card-number {
+        font-size: 38px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <header>
+
+    <div class="header-inner">
+
+      <img
+        class="logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU">
+
+      <div class="header-title">
+
+        <h1>
+          SIDUMAS KPU Kabupaten Karimun
+        </h1>
+
+        <p>
+          Sistem Pengaduan Masyarakat
+        </p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <nav>
+
+    <div class="nav-inner">
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a href="pengaduan.html">
+        Buat Pengaduan
+      </a>
+
+      <a href="riwayat.html">
+        Riwayat Pengaduan
+      </a>
+
+      <a
+        href="statistik.html"
+        class="active">
+        Statistik
+      </a>
+
+      <a href="admin.html">
+        Admin
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <main>
+
+    <div class="page-title">
+
+      <h2>
+        Statistik Pengaduan
+      </h2>
+
+      <p>
+        Statistik pengaduan masyarakat
+        SIDUMAS KPU Kabupaten Karimun
+      </p>
+
+    </div>
+
+
+    <div
+      class="error"
+      id="error">
+    </div>
+
+
+    <div
+      class="loading"
+      id="loading">
+
+      Memuat statistik...
+
+    </div>
+
+
+    <div
+      class="statistics"
+      id="statistics">
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Total Pengaduan
+        </div>
+
+        <div
+          class="card-number"
+          id="total">
+          0
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Terkirim
+        </div>
+
+        <div
+          class="card-number"
+          id="terkirim">
+          0
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Verifikasi
+        </div>
+
+        <div
+          class="card-number"
+          id="verifikasi">
+          0
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Bukti Tambahan
+        </div>
+
+        <div
+          class="card-number"
+          id="buktiTambahan">
+          0
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Selesai
+        </div>
+
+        <div
+          class="card-number"
+          id="selesai">
+          0
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-label">
+          Ditolak
+        </div>
+
+        <div
+          class="card-number"
+          id="ditolak">
+          0
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="refresh"
+      id="refresh"
+      onclick="loadStatistics()">
+
+      ↻ Perbarui Statistik
+
+    </button>
+
+
+  </main>
+
+
+  <footer>
+
+    © KPU Kabupaten Karimun — SIDUMAS
+
+  </footer>
+
+
+  <script>
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec";
+
+
+    async function loadStatistics() {
+
+      const loading =
+        document.getElementById(
+          "loading"
+        );
+
+      const statistics =
+        document.getElementById(
+          "statistics"
+        );
+
+      const error =
+        document.getElementById(
+          "error"
+        );
+
+      const refresh =
+        document.getElementById(
+          "refresh"
+        );
+
+
+      loading.style.display =
+        "block";
+
+      statistics.style.display =
+        "none";
+
+      error.style.display =
+        "none";
+
+      refresh.disabled =
+        true;
+
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+              },
+
+              body:
+                JSON.stringify({
+
+                  action:
+                    "getStatistics"
+
+                })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (!data.success) {
+
+          throw new Error(
+            data.message ||
+            "Statistik tidak dapat dimuat."
+          );
+
+        }
+
+
+        const stats =
+          data.statistics || {};
+
+
+        document
+          .getElementById(
+            "total"
+          )
+          .textContent =
+          stats.total || 0;
+
+
+        document
+          .getElementById(
+            "terkirim"
+          )
+          .textContent =
+          stats.terkirim || 0;
+
+
+        document
+          .getElementById(
+            "verifikasi"
+          )
+          .textContent =
+          stats.verifikasi || 0;
+
+
+        document
+          .getElementById(
+            "buktiTambahan"
+          )
+          .textContent =
+          stats.buktiTambahan || 0;
+
+
+        document
+          .getElementById(
+            "selesai"
+          )
+          .textContent =
+          stats.selesai || 0;
+
+
+        document
+          .getElementById(
+            "ditolak"
+          )
+          .textContent =
+          stats.ditolak || 0;
+
+
+        statistics.style.display =
+          "grid";
+
+
+      } catch (err) {
+
+        error.textContent =
+          err.message ||
+          "Terjadi kesalahan saat memuat statistik.";
+
+        error.style.display =
+          "block";
+
+      } finally {
+
+        loading.style.display =
+          "none";
+
+        refresh.disabled =
+          false;
+
+      }
+
+    }
+
+
+    loadStatistics();
+
+  </script>
+
+
+</body>
+
+</html>
