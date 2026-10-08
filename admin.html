@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - SIDUMAS KPU Kabupaten Karimun</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      border-radius: 14px;
+      padding: 35px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.10);
+    }
+
+    .login-logo {
+      display: block;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin: 0 auto 15px;
+    }
+
+    .login-title {
+      text-align: center;
+      color: #7b1625;
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: #777;
+      margin: 8px 0 28px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #7b1625;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 7px;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: #7b1625;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #64111d;
+    }
+
+    .btn-secondary {
+      background: #eee;
+      color: #333;
+    }
+
+    .btn-danger {
+      background: #b42318;
+      color: white;
+    }
+
+    .btn-success {
+      background: #287a3e;
+      color: white;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      margin-top: 5px;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .message.error {
+      background: #fdecec;
+      color: #a61b1b;
+      border: 1px solid #f3b5b5;
+    }
+
+    .message.success {
+      background: #edf8ef;
+      color: #237337;
+      border: 1px solid #b8dfbf;
+    }
+
+    /* =====================================================
+       ADMIN LAYOUT
+    ===================================================== */
+
+    .admin-layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 245px;
+      background: #7b1625;
+      color: white;
+      padding: 25px 18px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .sidebar-logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 12px;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .sidebar-title {
+      text-align: center;
+      font-size: 17px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+
+    .admin-user {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    .admin-user strong {
+      display: block;
+      margin-top: 4px;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      border-radius: 7px;
+      text-align: left;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .menu-btn:hover,
+    .menu-btn.active {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .logout-btn {
+      width: 100%;
+      margin-top: 25px;
+      background: white;
+      color: #7b1625;
+    }
+
+    .main-content {
+      margin-left: 245px;
+      width: calc(100% - 245px);
+      padding: 30px;
+    }
+
+    .page-title {
+      color: #7b1625;
+      margin: 0 0 25px;
+      font-size: 28px;
+    }
+
+    /* =====================================================
+       STATISTICS
+    ===================================================== */
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #7b1625;
+    }
+
+    .stat-label {
+      margin-top: 7px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    .table-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      overflow-x: auto;
+    }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .table-header h2 {
+      margin: 0;
+      color: #7b1625;
+      font-size: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #eee;
+      padding: 12px 10px;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #fafafa;
+      color: #555;
+    }
+
+    tr:hover td {
+      background: #fafafa;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .status-terkirim {
+      background: #e9eef8;
+      color: #31548a;
+    }
+
+    .status-verifikasi {
+      background: #fff4d6;
+      color: #8a6200;
+    }
+
+    .status-bukti {
+      background: #f3e8ff;
+      color: #7139a5;
+    }
+
+    .status-selesai {
+      background: #e5f6e9;
+      color: #26743a;
+    }
+
+    .status-ditolak {
+      background: #fde8e8;
+      color: #a51f1f;
+    }
+
+    /* =====================================================
+       DETAIL
+    ===================================================== */
+
+    .detail-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-top: 1px solid #eee;
+    }
+
+    .detail-label,
+    .detail-value {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .detail-label {
+      font-weight: bold;
+      background: #fafafa;
+    }
+
+    .detail-value {
+      word-break: break-word;
+    }
+
+    .detail-actions {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .file-link {
+      color: #7b1625;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .file-link:hover {
+      text-decoration: underline;
+    }
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1100px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .admin-layout {
+        display: block;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-label {
+        border-bottom: none;
+        padding-bottom: 4px;
+      }
+
+      .detail-value {
+        padding-top: 4px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .login-card {
+        padding: 25px 20px;
+      }
+
+      .main-content {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       LOGIN
+  ====================================================== -->
+
+  <div id="loginPage" class="login-wrapper">
+
+    <div class="login-card">
+
+      <img
+        class="login-logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU"
+      >
+
+      <h1 class="login-title">
+        ADMIN SIDUMAS
+      </h1>
+
+      <p class="login-subtitle">
+        KPU Kabupaten Karimun
+      </p>
+
+      <div id="loginMessage"></div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="username">
+            Username / Email
+          </label>
+
+          <input
+            type="text"
+            id="username"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary login-btn"
+          id="loginButton"
+        >
+          LOGIN
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       ADMIN DASHBOARD
+  ====================================================== -->
+
+  <div id="adminPage" class="admin-layout hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <img
+        class="sidebar-logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU"
+      >
+
+      <div class="sidebar-title">
+        SIDUMAS<br>
+        KPU KABUPATEN KARIMUN
+      </div>
+
+      <div class="admin-user">
+        Login sebagai:
+        <strong id="adminUsername">-</strong>
+      </div>
+
+      <div class="sidebar-menu">
+
+        <button
+          class="menu-btn active"
+          id="menuDashboard"
+          onclick="showDashboard()"
+        >
+          DASHBOARD
+        </button>
+
+        <button
+          class="menu-btn"
+          onclick="showAllComplaints()"
+        >
+          PENGADUAN
+        </button>
+
+        <button
+          class="menu-btn"
+          onclick="refreshDashboard()"
+        >
+          REFRESH DATA
+        </button>
+
+      </div>
+
+      <button
+        class="btn logout-btn"
+        onclick="logoutAdmin()"
+      >
+        LOGOUT
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+      <!-- DASHBOARD -->
+
+      <section id="dashboardSection">
+
+        <h1 class="page-title">
+          Dashboard Admin
+        </h1>
+
+        <div id="dashboardMessage"></div>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statTotal"
+            >0</div>
+
+            <div class="stat-label">
+              Total Pengaduan
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statTerkirim"
+            >0</div>
+
+            <div class="stat-label">
+              Terkirim
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statVerifikasi"
+            >0</div>
+
+            <div class="stat-label">
+              Verifikasi
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statBukti"
+            >0</div>
+
+            <div class="stat-label">
+              Bukti Tambahan
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statSelesai"
+            >0</div>
+
+            <div class="stat-label">
+              Selesai
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-number"
+              id="statDitolak"
+            >0</div>
+
+            <div class="stat-label">
+              Ditolak
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-card">
+
+          <div class="table-header">
+
+            <h2>
+              Daftar Pengaduan
+            </h2>
+
+            <button
+              class="btn btn-primary"
+              onclick="refreshDashboard()"
+            >
+              Refresh
+            </button>
+
+          </div>
+
+          <div id="tableContainer">
+
+            <div class="loading">
+              Memuat data...
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DETAIL -->
+
+      <section
+        id="detailSection"
+        class="hidden"
+      >
+
+        <h1 class="page-title">
+          Detail Pengaduan
+        </h1>
+
+        <div
+          id="detailMessage"
+        ></div>
+
+        <div
+          id="detailContainer"
+          class="detail-card"
+        ></div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+<script>
+
+  /* =========================================================
+     KONFIGURASI
+  ========================================================= */
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec';
+
+
+  let adminToken = '';
+  let adminUsername = '';
+  let complaintData = [];
+
+
+  /* =========================================================
+     API REQUEST
+  ========================================================= */
+
+  async function apiRequest(payload) {
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
+
+          body:
+            JSON.stringify(payload)
+        }
+      );
+
+    const result =
+      await response.json();
+
+    return result;
+  }
+
+
+  /* =========================================================
+     LOGIN
+  ========================================================= */
+
+  document
+    .getElementById('loginForm')
+    .addEventListener(
+      'submit',
+      async function(event) {
+
+        event.preventDefault();
+
+        const username =
+          document
+            .getElementById('username')
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById('password')
+            .value;
+
+        const button =
+          document
+            .getElementById('loginButton');
+
+        const message =
+          document
+            .getElementById('loginMessage');
+
+        button.disabled = true;
+        button.textContent =
+          'MEMPROSES...';
+
+        message.innerHTML = '';
+
+        try {
+
+          const result =
+            await apiRequest({
+
+              action:
+                'adminLogin',
+
+              username:
+                username,
+
+              password:
+                password
+
+            });
+
+
+          if (!result.success) {
+
+            showMessage(
+              message,
+              result.message ||
+              'Login gagal.',
+              'error'
+            );
+
+            return;
+          }
+
+
+          adminToken =
+            result.token ||
+            result.adminToken;
+
+          adminUsername =
+            result.username ||
+            username;
+
+
+          if (!adminToken) {
+
+            showMessage(
+              message,
+              'Token admin tidak diterima.',
+              'error'
+            );
+
+            return;
+          }
+
+
+          sessionStorage.setItem(
+            'sidumasAdminToken',
+            adminToken
+          );
+
+          sessionStorage.setItem(
+            'sidumasAdminUsername',
+            adminUsername
+          );
+
+
+          document
+            .getElementById('adminUsername')
+            .textContent =
+              adminUsername;
+
+
+          document
+            .getElementById('loginPage')
+            .classList
+            .add('hidden');
+
+
+          document
+            .getElementById('adminPage')
+            .classList
+            .remove('hidden');
+
+
+          await loadDashboard();
+
+        } catch (error) {
+
+          showMessage(
+            message,
+            'Tidak dapat terhubung ke server: ' +
+            error.message,
+            'error'
+          );
+
+        } finally {
+
+          button.disabled = false;
+          button.textContent =
+            'LOGIN';
+
+        }
+
+      }
+    );
+
+
+  /* =========================================================
+     LOAD SESSION
+  ========================================================= */
+
+  window.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+      const savedToken =
+        sessionStorage.getItem(
+          'sidumasAdminToken'
+        );
+
+      const savedUsername =
+        sessionStorage.getItem(
+          'sidumasAdminUsername'
+        );
+
+      if (
+        savedToken &&
+        savedUsername
+      ) {
+
+        adminToken =
+          savedToken;
+
+        adminUsername =
+          savedUsername;
+
+        document
+          .getElementById('adminUsername')
+          .textContent =
+            adminUsername;
+
+        document
+          .getElementById('loginPage')
+          .classList
+          .add('hidden');
+
+        document
+          .getElementById('adminPage')
+          .classList
+          .remove('hidden');
+
+        loadDashboard();
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     LOAD DASHBOARD
+  ========================================================= */
+
+  async function loadDashboard() {
+
+    const container =
+      document
+        .getElementById('tableContainer');
+
+    container.innerHTML =
+      '<div class="loading">Memuat data pengaduan...</div>';
+
+    try {
+
+      const result =
+        await apiRequest({
+
+          action:
+            'getAdminDashboard',
+
+          token:
+            adminToken
+
+        });
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.message ||
+          'Gagal memuat dashboard.'
+        );
+
+      }
+
+
+      complaintData =
+        result.records ||
+        result.data ||
+        result.pengaduan ||
+        [];
+
+
+      updateStatistics(
+        result
+      );
+
+      renderTable(
+        complaintData
+      );
+
+
+    } catch (error) {
+
+      container.innerHTML = '';
+
+      showMessage(
+        document.getElementById(
+          'dashboardMessage'
+        ),
+        error.message,
+        'error'
+      );
+
+      if (
+        error.message
+          .toLowerCase()
+          .includes('sesi admin')
+      ) {
+
+        clearSession();
+
+      }
+
+    }
+
+  }
+
+
+  /* =========================================================
+     STATISTICS
+  ========================================================= */
+
+  function updateStatistics(result) {
+
+    const stats =
+      result.statistik ||
+      result.stats ||
+      {};
+
+
+    document
+      .getElementById('statTotal')
+      .textContent =
+        result.total || 0;
+
+
+    document
+      .getElementById('statTerkirim')
+      .textContent =
+        stats['TERKIRIM'] || 0;
+
+
+    document
+      .getElementById('statVerifikasi')
+      .textContent =
+        stats['VERIFIKASI'] || 0;
+
+
+    document
+      .getElementById('statBukti')
+      .textContent =
+        stats['BUKTI TAMBAHAN'] || 0;
+
+
+    document
+      .getElementById('statSelesai')
+      .textContent =
+        stats['SELESAI'] || 0;
+
+
+    document
+      .getElementById('statDitolak')
+      .textContent =
+        stats['DITOLAK'] || 0;
+
+  }
+
+
+  /* =========================================================
+     TABLE
+  ========================================================= */
+
+  function renderTable(records) {
+
+    const container =
+      document
+        .getElementById('tableContainer');
+
+
+    if (!records.length) {
+
+      container.innerHTML =
+        '<div class="loading">Belum ada pengaduan.</div>';
+
+      return;
+    }
+
+
+    let html = `
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>No.</th>
+
+            <th>Nomor Pengaduan</th>
+
+            <th>Nama Pelapor</th>
+
+            <th>Nama Terlapor</th>
+
+            <th>Jabatan</th>
+
+            <th>Status</th>
+
+            <th>Aksi</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+    `;
+
+
+    records.forEach(
+      function(record, index) {
+
+        const status =
+          record.status ||
+          'TERKIRIM';
+
+
+        html += `
+
+          <tr>
+
+            <td>
+              ${index + 1}
+            </td>
+
+            <td>
+              <strong>
+                ${escapeHtml(
+                  record.nomorPengaduan || ''
+                )}
+              </strong>
+            </td>
+
+            <td>
+              ${escapeHtml(
+                record.namaPelapor || ''
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                record.namaTerlapor || ''
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                record.jabatanTerlapor || ''
+              )}
+            </td>
+
+            <td>
+              ${statusBadge(status)}
+            </td>
+
+            <td>
+
+              <button
+                class="btn btn-primary"
+                onclick="openComplaint(
+                  '${escapeJs(
+                    record.nomorPengaduan || ''
+                  )}'
+                )"
+              >
+                Detail
+              </button>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      }
+    );
+
+
+    html += `
+        </tbody>
+
+      </table>
+    `;
+
+
+    container.innerHTML =
+      html;
+
+  }
+
+
+  /* =========================================================
+     STATUS BADGE
+  ========================================================= */
+
+  function statusBadge(status) {
+
+    let className =
+      'status-terkirim';
+
+
+    if (status === 'VERIFIKASI') {
+      className =
+        'status-verifikasi';
+    }
+
+    if (status === 'BUKTI TAMBAHAN') {
+      className =
+        'status-bukti';
+    }
+
+    if (status === 'SELESAI') {
+      className =
+        'status-selesai';
+    }
+
+    if (status === 'DITOLAK') {
+      className =
+        'status-ditolak';
+    }
+
+
+    return `
+      <span class="status ${className}">
+        ${escapeHtml(status)}
+      </span>
+    `;
+
+  }
+
+
+  /* =========================================================
+     OPEN DETAIL
+  ========================================================= */
+
+  async function openComplaint(nomor) {
+
+    document
+      .getElementById('dashboardSection')
+      .classList
+      .add('hidden');
+
+    document
+      .getElementById('detailSection')
+      .classList
+      .remove('hidden');
+
+
+    const container =
+      document
+        .getElementById('detailContainer');
+
+
+    container.innerHTML =
+      '<div class="loading">Memuat detail pengaduan...</div>';
+
+
+    try {
+
+      const result =
+        await apiRequest({
+
+          action:
+            'getAdminComplaint',
+
+          token:
+            adminToken,
+
+          nomorPengaduan:
+            nomor
+
+        });
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.message ||
+          'Detail pengaduan tidak ditemukan.'
+        );
+
+      }
+
+
+      renderDetail(result);
+
+
+    } catch (error) {
+
+      container.innerHTML = '';
+
+      showMessage(
+        document.getElementById(
+          'detailMessage'
+        ),
+        error.message,
+        'error'
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     RENDER DETAIL
+  ========================================================= */
+
+  function renderDetail(data) {
+
+    const container =
+      document
+        .getElementById('detailContainer');
+
+
+    const ktp =
+      data.ktpUrl ||
+      data.fileKtp ||
+      '';
+
+
+    const bukti =
+      data.buktiUrl ||
+      data.fileBukti ||
+      '';
+
+
+    container.innerHTML = `
+
+      <div class="detail-grid">
+
+        ${detailRow(
+          'Nomor Pengaduan',
+          data.nomorPengaduan
+        )}
+
+        ${detailRow(
+          'Tanggal Pengaduan',
+          data.timestamp
+        )}
+
+        ${detailRow(
+          'Nama Pelapor',
+          data.namaPelapor
+        )}
+
+        ${detailRow(
+          'NIK',
+          data.nik
+        )}
+
+        ${detailRow(
+          'Tempat Lahir',
+          data.tempatLahir
+        )}
+
+        ${detailRow(
+          'Tanggal Lahir',
+          data.tanggalLahir
+        )}
+
+        ${detailRow(
+          'Nomor HP',
+          data.nomorHp
+        )}
+
+        ${detailRow(
+          'Email',
+          data.email
+        )}
+
+        ${detailRow(
+          'Nama Terlapor',
+          data.namaTerlapor
+        )}
+
+        ${detailRow(
+          'Jabatan Terlapor',
+          data.jabatanTerlapor
+        )}
+
+        ${detailRow(
+          'Uraian Pengaduan',
+          data.uraian
+        )}
+
+        <div class="detail-label">
+          File KTP
+        </div>
+
+        <div class="detail-value">
+
+          ${
+            ktp
+              ? `
+                <a
+                  class="file-link"
+                  href="${escapeAttribute(ktp)}"
+                  target="_blank"
+                >
+                  Buka File KTP
+                </a>
+              `
+              : 'Tidak ada file'
+          }
+
+        </div>
+
+
+        <div class="detail-label">
+          File Bukti Dukung
+        </div>
+
+        <div class="detail-value">
+
+          ${
+            bukti
+              ? `
+                <a
+                  class="file-link"
+                  href="${escapeAttribute(bukti)}"
+                  target="_blank"
+                >
+                  Buka File Bukti Dukung
+                </a>
+              `
+              : 'Tidak ada file'
+          }
+
+        </div>
+
+
+        ${detailRow(
+          'Status',
+          data.status
+        )}
+
+      </div>
+
+
+      <div class="detail-actions">
+
+        <h3 style="color:#7b1625;">
+          Proses Pengaduan
+        </h3>
+
+
+        <div class="form-group">
+
+          <label>
+            Status
+          </label>
+
+          <select id="updateStatus">
+
+            <option value="TERKIRIM">
+              TERKIRIM
+            </option>
+
+            <option value="VERIFIKASI">
+              VERIFIKASI
+            </option>
+
+            <option value="BUKTI TAMBAHAN">
+              BUKTI TAMBAHAN
+            </option>
+
+            <option value="SELESAI">
+              SELESAI
+            </option>
+
+            <option value="DITOLAK">
+              DITOLAK
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Catatan untuk Pelapor
+          </label>
+
+          <textarea
+            id="publicNote"
+            rows="4"
+            placeholder="Catatan yang dapat dilihat oleh pelapor..."
+          >${escapeHtml(
+            data.publicNote ||
+            data.catatanPelapor ||
+            ''
+          )}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Catatan Internal
+          </label>
+
+          <textarea
+            id="internalNote"
+            rows="4"
+            placeholder="Catatan internal..."
+          >${escapeHtml(
+            data.internalNote ||
+            data.catatanInternal ||
+            ''
+          )}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Nama Petugas
+          </label>
+
+          <input
+            type="text"
+            id="petugas"
+            value="${escapeAttribute(
+              data.petugas || ''
+            )}"
+            placeholder="Nama petugas"
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-success"
+          onclick="updateStatus(
+            '${escapeJs(
+              data.nomorPengaduan
+            )}'
+          )"
+        >
+          SIMPAN PERUBAHAN
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="showDashboard()"
+          style="margin-left:8px;"
+        >
+          KEMBALI
+        </button>
+
+      </div>
+
+    `;
+
+
+    document
+      .getElementById('updateStatus')
+      .value =
+        data.status || 'TERKIRIM';
+
+  }
+
+
+  /* =========================================================
+     DETAIL ROW
+  ========================================================= */
+
+  function detailRow(label, value) {
+
+    return `
+
+      <div class="detail-label">
+        ${escapeHtml(label)}
+      </div>
+
+      <div class="detail-value">
+        ${escapeHtml(
+          value || '-'
+        )}
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     UPDATE STATUS
+  ========================================================= */
+
+  async function updateStatus(nomor) {
+
+    const status =
+      document
+        .getElementById('updateStatus')
+        .value;
+
+    const publicNote =
+      document
+        .getElementById('publicNote')
+        .value;
+
+    const internalNote =
+      document
+        .getElementById('internalNote')
+        .value;
+
+    const petugas =
+      document
+        .getElementById('petugas')
+        .value
+        .trim();
+
+
+    if (!petugas) {
+
+      showMessage(
+        document.getElementById(
+          'detailMessage'
+        ),
+        'Nama petugas wajib diisi.',
+        'error'
+      );
+
+      return;
+    }
+
+
+    if (
+      !confirm(
+        'Simpan perubahan status pengaduan ' +
+        nomor +
+        '?'
+      )
+    ) {
+      return;
+    }
+
+
+    try {
+
+      const result =
+        await apiRequest({
+
+          action:
+            'adminUpdateStatus',
+
+          token:
+            adminToken,
+
+          nomorPengaduan:
+            nomor,
+
+          status:
+            status,
+
+          catatanPelapor:
+            publicNote,
+
+          catatanInternal:
+            internalNote,
+
+          petugas:
+            petugas
+
+        });
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.message ||
+          'Gagal memperbarui status.'
+        );
+
+      }
+
+
+      showMessage(
+        document.getElementById(
+          'detailMessage'
+        ),
+        result.message ||
+        'Status berhasil diperbarui.',
+        'success'
+      );
+
+
+      await openComplaint(nomor);
+
+
+    } catch (error) {
+
+      showMessage(
+        document.getElementById(
+          'detailMessage'
+        ),
+        error.message,
+        'error'
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     SHOW DASHBOARD
+  ========================================================= */
+
+  function showDashboard() {
+
+    document
+      .getElementById('detailSection')
+      .classList
+      .add('hidden');
+
+    document
+      .getElementById('dashboardSection')
+      .classList
+      .remove('hidden');
+
+    loadDashboard();
+
+  }
+
+
+  /* =========================================================
+     SHOW ALL COMPLAINTS
+  ========================================================= */
+
+  function showAllComplaints() {
+
+    document
+      .getElementById('detailSection')
+      .classList
+      .add('hidden');
+
+    document
+      .getElementById('dashboardSection')
+      .classList
+      .remove('hidden');
+
+    document
+      .getElementById('menuDashboard')
+      .classList
+      .remove('active');
+
+    loadDashboard();
+
+  }
+
+
+  /* =========================================================
+     REFRESH
+  ========================================================= */
+
+  function refreshDashboard() {
+
+    loadDashboard();
+
+  }
+
+
+  /* =========================================================
+     LOGOUT
+  ========================================================= */
+
+  async function logoutAdmin() {
+
+    try {
+
+      if (adminToken) {
+
+        await apiRequest({
+
+          action:
+            'adminLogout',
+
+          token:
+            adminToken
+
+        });
+
+      }
+
+    } catch (error) {
+
+      console.warn(
+        'Logout server gagal:',
+        error
+      );
+
+    }
+
+
+    clearSession();
+
+  }
+
+
+  function clearSession() {
+
+    adminToken = '';
+    adminUsername = '';
+
+    sessionStorage.removeItem(
+      'sidumasAdminToken'
+    );
+
+    sessionStorage.removeItem(
+      'sidumasAdminUsername'
+    );
+
+
+    document
+      .getElementById('adminPage')
+      .classList
+      .add('hidden');
+
+    document
+      .getElementById('loginPage')
+      .classList
+      .remove('hidden');
+
+    document
+      .getElementById('password')
+      .value = '';
+
+  }
+
+
+  /* =========================================================
+     MESSAGE
+  ========================================================= */
+
+  function showMessage(
+    element,
+    message,
+    type
+  ) {
+
+    element.innerHTML = `
+
+      <div class="message ${type}">
+        ${escapeHtml(message)}
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     SECURITY / ESCAPE
+  ========================================================= */
+
+  function escapeHtml(value) {
+
+    return String(
+      value === undefined ||
+      value === null
+        ? ''
+        : value
+    )
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  }
+
+
+  function escapeAttribute(value) {
+
+    return escapeHtml(value);
+
+  }
+
+
+  function escapeJs(value) {
+
+    return String(
+      value || ''
+    )
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/\r/g, '')
+    .replace(/\n/g, '\\n');
+
+  }
+
+</script>
+
+</body>
+</html>
