@@ -1,135 +1,1171 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Test Koneksi SIDUMAS</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Pengaduan - SIDUMAS KPU Kabupaten Karimun</title>
+
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, sans-serif;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background: #f5f6f8;
+      color: #222;
     }
 
-    .box {
-      width: 90%;
-      max-width: 500px;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,.08);
-    }
 
-    h1 {
-      color: #7b1625;
-    }
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
-    button {
+    .header {
+
       background: #7b1625;
       color: white;
-      border: 0;
-      padding: 13px 20px;
-      border-radius: 7px;
-      cursor: pointer;
+
+      padding: 14px 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+    }
+
+
+    .brand {
+
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+
+    .logo {
+
+      width: 45px;
+      height: 45px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      padding: 4px;
+
+      object-fit: contain;
+
+    }
+
+
+    .brand h1 {
+
+      margin: 0;
+
+      font-size: 19px;
+
+    }
+
+
+    .brand p {
+
+      margin: 3px 0 0;
+
+      font-size: 11px;
+
+      opacity: .9;
+
+    }
+
+
+    .back {
+
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
       font-weight: bold;
+
     }
 
-    #hasil {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f5f5f5;
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
+    .container {
+
+      max-width: 1000px;
+
+      margin: 35px auto;
+
+      padding: 0 18px;
+
+    }
+
+
+    .card {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 5px 25px
+        rgba(0,0,0,.07);
+
+    }
+
+
+    .title {
+
+      margin: 0 0 8px;
+
+      color: #7b1625;
+
+      font-size: 24px;
+
+    }
+
+
+    .subtitle {
+
+      margin: 0 0 30px;
+
+      color: #666;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+    }
+
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
+
+    .section {
+
+      margin-top: 30px;
+
+    }
+
+
+    .section-title {
+
+      margin-bottom: 18px;
+
+      padding-bottom: 8px;
+
+      border-bottom:
+        2px solid #7b1625;
+
+      color: #7b1625;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+    }
+
+
+    /* =====================================================
+       FORM
+    ===================================================== */
+
+    .form-group {
+
+      margin-bottom: 18px;
+
+    }
+
+
+    label {
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      color: #333;
+
+    }
+
+
+    label span {
+
+      color: #c62828;
+
+    }
+
+
+    input,
+    textarea {
+
+      width: 100%;
+
+      padding: 12px;
+
+      border:
+        1px solid #d5d7dc;
+
       border-radius: 7px;
-      min-height: 20px;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      outline: none;
+
+      background: white;
+
     }
-  </style>
-</head>
-
-<body>
-
-  <div class="box">
-
-    <h1>SIDUMAS</h1>
-
-    <p>
-      Tes koneksi GitHub Pages dengan Google Apps Script
-    </p>
-
-    <button onclick="testKoneksi()">
-      TEST KONEKSI
-    </button>
-
-    <div id="hasil">
-      Belum ada pengujian.
-    </div>
-
-  </div>
 
 
-  <script>
+    input:focus,
+    textarea:focus {
 
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec";
+      border-color: #7b1625;
 
+      box-shadow:
+        0 0 0 2px
+        rgba(123,22,37,.08);
 
-    async function testKoneksi() {
-
-      const hasil = document.getElementById("hasil");
-
-      hasil.innerHTML = "Menghubungkan...";
-
-      try {
-
-        const response = await fetch(API_URL, {
-
-          method: "POST",
-
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-
-          body: JSON.stringify({
-            action: "test"
-          })
-
-        });
+    }
 
 
-        const data = await response.json();
+    textarea {
 
-        console.log(data);
+      min-height: 150px;
 
-        if (data.success) {
+      resize: vertical;
 
-          hasil.innerHTML =
-            "✅ " + data.message;
+    }
 
-        } else {
 
-          hasil.innerHTML =
-            "❌ " + (data.message || "Koneksi gagal.");
+    .two-column {
 
-        }
+      display: grid;
 
-      } catch (error) {
+      grid-template-columns:
+        1fr 1fr;
 
-        console.error(error);
+      gap: 18px;
 
-        hasil.innerHTML =
-          "❌ Gagal terhubung ke Apps Script.<br><br>" +
-          error.message;
+    }
+
+
+    .help {
+
+      margin-top: 5px;
+
+      font-size: 11px;
+
+      color: #777;
+
+    }
+
+
+    /* =====================================================
+       BUTTON
+    ===================================================== */
+
+    .submit-area {
+
+      margin-top: 35px;
+
+      text-align: center;
+
+    }
+
+
+    .submit {
+
+      width: 100%;
+
+      max-width: 350px;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 7px;
+
+      background: #7b1625;
+
+      color: white;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+
+    .submit:hover {
+
+      opacity: .9;
+
+    }
+
+
+    .submit:disabled {
+
+      opacity: .6;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
+
+    #message {
+
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 15px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+    }
+
+
+    .success {
+
+      display: block !important;
+
+      background: #e8f5e9;
+
+      color: #1b5e20;
+
+      border:
+        1px solid #a5d6a7;
+
+    }
+
+
+    .error {
+
+      display: block !important;
+
+      background: #ffebee;
+
+      color: #b71c1c;
+
+      border:
+        1px solid #ef9a9a;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .header {
+
+        padding: 12px 15px;
+
+      }
+
+
+      .brand h1 {
+
+        font-size: 16px;
+
+      }
+
+
+      .brand p {
+
+        font-size: 10px;
+
+      }
+
+
+      .logo {
+
+        width: 40px;
+        height: 40px;
+
+      }
+
+
+      .container {
+
+        margin: 20px auto;
+
+        padding: 0 12px;
+
+      }
+
+
+      .card {
+
+        padding: 20px 16px;
+
+      }
+
+
+      .title {
+
+        font-size: 21px;
+
+      }
+
+
+      .two-column {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+      }
+
+
+      input,
+      textarea {
+
+        font-size: 16px;
 
       }
 
     }
 
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
+
+  <header class="header">
+
+    <div class="brand">
+
+      <img
+        class="logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU"
+      >
+
+      <div>
+
+        <h1>SIDUMAS</h1>
+
+        <p>
+          KPU Kabupaten Karimun
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <a
+      class="back"
+      href="index.html"
+    >
+      ← Beranda
+    </a>
+
+  </header>
+
+
+  <!-- =====================================================
+       CONTENT
+  ===================================================== -->
+
+  <main class="container">
+
+    <div class="card">
+
+
+      <h2 class="title">
+        Buat Pengaduan
+      </h2>
+
+
+      <p class="subtitle">
+
+        Silakan isi data dengan benar dan lengkap.
+        Data yang Anda sampaikan akan digunakan untuk
+        proses penanganan pengaduan.
+
+      </p>
+
+
+      <form id="complaintForm">
+
+
+        <!-- =================================================
+             DATA PELAPOR
+        ================================================= -->
+
+        <div class="section">
+
+          <div class="section-title">
+            DATA PELAPOR
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Nama Pelapor <span>*</span>
+            </label>
+
+            <input
+              type="text"
+              id="namaPelapor"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              NIK <span>*</span>
+            </label>
+
+            <input
+              type="text"
+              id="nik"
+              maxlength="30"
+              required
+            >
+
+          </div>
+
+
+          <div class="two-column">
+
+
+            <div class="form-group">
+
+              <label>
+                Tempat Lahir
+              </label>
+
+              <input
+                type="text"
+                id="tempatLahir"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Tanggal Lahir
+              </label>
+
+              <input
+                type="date"
+                id="tanggalLahir"
+              >
+
+            </div>
+
+
+          </div>
+
+
+          <div class="two-column">
+
+
+            <div class="form-group">
+
+              <label>
+                Nomor HP <span>*</span>
+              </label>
+
+              <input
+                type="tel"
+                id="nomorHp"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Email <span>*</span>
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                required
+              >
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DATA TERLAPOR
+        ================================================= -->
+
+        <div class="section">
+
+          <div class="section-title">
+            DATA TERLAPOR
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Nama Terlapor <span>*</span>
+            </label>
+
+            <input
+              type="text"
+              id="namaTerlapor"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Jabatan Terlapor
+            </label>
+
+            <input
+              type="text"
+              id="jabatanTerlapor"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             URAIAN
+        ================================================= -->
+
+        <div class="section">
+
+          <div class="section-title">
+            URAIAN PENGADUAN
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Uraian Pengaduan <span>*</span>
+            </label>
+
+            <textarea
+              id="uraian"
+              required
+              placeholder="Jelaskan pengaduan secara lengkap..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DOKUMEN
+        ================================================= -->
+
+        <div class="section">
+
+          <div class="section-title">
+            DOKUMEN PENDUKUNG
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              KTP
+            </label>
+
+            <input
+              type="file"
+              id="fileKtp"
+              accept="image/*,.pdf"
+            >
+
+            <div class="help">
+              Maksimal 10 MB.
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              File Bukti Dukung Pengaduan
+            </label>
+
+            <input
+              type="file"
+              id="fileBukti"
+              accept="image/*,.pdf,.doc,.docx,.xls,.xlsx"
+            >
+
+            <div class="help">
+              Maksimal 10 MB.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BUTTON
+        ================================================= -->
+
+        <div class="submit-area">
+
+          <button
+            type="submit"
+            class="submit"
+            id="submitButton"
+          >
+            KIRIM PENGADUAN
+          </button>
+
+        </div>
+
+
+      </form>
+
+
+      <div id="message"></div>
+
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /*
+     * ======================================================
+     * URL BACKEND APPS SCRIPT
+     * ======================================================
+     */
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec";
+
+
+    /*
+     * ======================================================
+     * UBAH FILE MENJADI BASE64
+     * ======================================================
+     */
+
+    function fileToBase64(file) {
+
+      return new Promise(
+        (resolve, reject) => {
+
+          if (!file) {
+
+            resolve(null);
+
+            return;
+
+          }
+
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload = function() {
+
+            resolve({
+
+              name:
+                file.name,
+
+              mimeType:
+                file.type ||
+                "application/octet-stream",
+
+              base64:
+                reader.result
+
+            });
+
+          };
+
+
+          reader.onerror =
+            function() {
+
+              reject(
+                new Error(
+                  "File tidak dapat dibaca."
+                )
+              );
+
+            };
+
+
+          reader.readAsDataURL(file);
+
+        }
+      );
+
+    }
+
+
+    /*
+     * ======================================================
+     * SUBMIT FORM
+     * ======================================================
+     */
+
+    document
+      .getElementById("complaintForm")
+      .addEventListener(
+        "submit",
+        async function(event) {
+
+          event.preventDefault();
+
+
+          const button =
+            document.getElementById(
+              "submitButton"
+            );
+
+
+          const message =
+            document.getElementById(
+              "message"
+            );
+
+
+          button.disabled = true;
+
+          button.textContent =
+            "MEMPROSES...";
+
+
+          message.className = "";
+
+          message.style.display =
+            "none";
+
+
+          try {
+
+
+            /*
+             * FILE
+             */
+
+            const ktpFile =
+              document.getElementById(
+                "fileKtp"
+              ).files[0];
+
+
+            const buktiFile =
+              document.getElementById(
+                "fileBukti"
+              ).files[0];
+
+
+            /*
+             * BATAS FILE
+             */
+
+            const maxSize =
+              10 * 1024 * 1024;
+
+
+            if (
+              ktpFile &&
+              ktpFile.size > maxSize
+            ) {
+
+              throw new Error(
+                "File KTP melebihi 10 MB."
+              );
+
+            }
+
+
+            if (
+              buktiFile &&
+              buktiFile.size > maxSize
+            ) {
+
+              throw new Error(
+                "File bukti dukung melebihi 10 MB."
+              );
+
+            }
+
+
+            /*
+             * BASE64
+             */
+
+            const ktp =
+              await fileToBase64(
+                ktpFile
+              );
+
+
+            const bukti =
+              await fileToBase64(
+                buktiFile
+              );
+
+
+            /*
+             * DATA
+             */
+
+            const data = {
+
+              action:
+                "submitComplaint",
+
+              namaPelapor:
+                document.getElementById(
+                  "namaPelapor"
+                ).value.trim(),
+
+              nik:
+                document.getElementById(
+                  "nik"
+                ).value.trim(),
+
+              tempatLahir:
+                document.getElementById(
+                  "tempatLahir"
+                ).value.trim(),
+
+              tanggalLahir:
+                document.getElementById(
+                  "tanggalLahir"
+                ).value,
+
+              nomorHp:
+                document.getElementById(
+                  "nomorHp"
+                ).value.trim(),
+
+              email:
+                document.getElementById(
+                  "email"
+                ).value.trim(),
+
+              namaTerlapor:
+                document.getElementById(
+                  "namaTerlapor"
+                ).value.trim(),
+
+              jabatanTerlapor:
+                document.getElementById(
+                  "jabatanTerlapor"
+                ).value.trim(),
+
+              uraian:
+                document.getElementById(
+                  "uraian"
+                ).value.trim(),
+
+              fileKtp:
+                ktp,
+
+              fileBukti:
+                bukti
+
+            };
+
+
+            /*
+             * KIRIM KE APPS SCRIPT
+             */
+
+            const response =
+              await fetch(
+                API_URL,
+                {
+
+                  method:
+                    "POST",
+
+                  headers: {
+
+                    "Content-Type":
+                      "text/plain;charset=utf-8"
+
+                  },
+
+                  body:
+                    JSON.stringify(data)
+
+                }
+              );
+
+
+            const result =
+              await response.json();
+
+
+            /*
+             * HASIL
+             */
+
+            if (!result.success) {
+
+              throw new Error(
+                result.message ||
+                "Pengaduan gagal dikirim."
+              );
+
+            }
+
+
+            /*
+             * BERHASIL
+             */
+
+            message.className =
+              "success";
+
+
+            message.innerHTML =
+
+              "<strong>Pengaduan berhasil dikirim.</strong><br><br>" +
+
+              "Nomor Pengaduan:<br>" +
+
+              "<strong>" +
+              result.nomorPengaduan +
+              "</strong><br><br>" +
+
+              "Kode Verifikasi:<br>" +
+
+              "<strong>" +
+              result.kodeVerifikasi +
+              "</strong><br><br>" +
+
+              "Simpan Nomor Pengaduan dan Kode Verifikasi " +
+              "tersebut untuk mengecek riwayat pengaduan.";
+
+
+            message.style.display =
+              "block";
+
+
+            document
+              .getElementById(
+                "complaintForm"
+              )
+              .reset();
+
+
+          } catch (error) {
+
+
+            message.className =
+              "error";
+
+
+            message.innerHTML =
+              "<strong>Pengaduan gagal.</strong><br><br>" +
+              error.message;
+
+
+            message.style.display =
+              "block";
+
+
+          } finally {
+
+
+            button.disabled =
+              false;
+
+
+            button.textContent =
+              "KIRIM PENGADUAN";
+
+
+          }
+
+        }
+      );
+
   </script>
 
 </body>
+
 </html>
