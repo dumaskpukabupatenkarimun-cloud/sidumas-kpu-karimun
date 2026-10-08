@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SIDUMAS - KPU Kabupaten Karimun</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
+
+    /* HEADER */
+    .header {
+      background: #7b1625;
+      color: white;
+      padding: 16px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      padding: 4px;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .brand-text p {
+      margin: 3px 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* MENU */
+    .menu {
+      display: flex;
+      gap: 8px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      padding: 9px 13px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .menu a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 14px;
+      padding: 50px 30px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    }
+
+    .hero h2 {
+      margin: 0;
+      color: #7b1625;
+      font-size: 30px;
+    }
+
+    .hero p {
+      color: #666;
+      line-height: 1.7;
+      max-width: 650px;
+      margin: 15px auto 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #7b1625;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #7b1625;
+      border: 1px solid #7b1625;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* INFO */
+    .info-grid {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      color: #7b1625;
+      font-size: 16px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+
+      .header {
+        padding: 12px 15px;
+      }
+
+      .brand-text h1 {
+        font-size: 16px;
+      }
+
+      .brand-text p {
+        font-size: 10px;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .main {
+        padding: 25px 15px;
+      }
+
+      .hero {
+        padding: 35px 20px;
+      }
+
+      .hero h2 {
+        font-size: 24px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="brand">
+
+      <img
+        class="logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU"
+      >
+
+      <div class="brand-text">
+        <h1>SIDUMAS</h1>
+        <p>KPU Kabupaten Karimun</p>
+      </div>
+
+    </div>
+
+    <nav class="menu">
+      <a href="index.html">Beranda</a>
+      <a href="pengaduan.html">Pengaduan</a>
+      <a href="riwayat.html">Riwayat</a>
+      <a href="statistik.html">Statistik</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <section class="hero">
+
+      <h2>
+        Sistem Informasi Pengaduan Masyarakat
+      </h2>
+
+      <p>
+        Layanan pengaduan masyarakat KPU Kabupaten Karimun.
+        Sampaikan pengaduan Anda secara mudah, aman, dan dapat
+        dipantau proses penanganannya.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="pengaduan.html"
+          class="btn btn-primary"
+        >
+          BUAT PENGADUAN
+        </a>
+
+        <a
+          href="riwayat.html"
+          class="btn btn-secondary"
+        >
+          CEK RIWAYAT PENGADUAN
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="info-grid">
+
+      <div class="info-card">
+        <h3>Buat Pengaduan</h3>
+        <p>
+          Sampaikan pengaduan masyarakat melalui
+          formulir yang telah disediakan.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Cek Riwayat</h3>
+        <p>
+          Pantau status dan tahapan penanganan
+          pengaduan Anda.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Statistik</h3>
+        <p>
+          Lihat informasi statistik pengaduan
+          masyarakat.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © KPU Kabupaten Karimun — SIDUMAS
+  </footer>
+
+</body>
+</html>
