@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Riwayat Pengaduan - SIDUMAS KPU Kabupaten Karimun</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #7b1625;
+      color: white;
+      padding: 18px 25px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .header-title h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header-title p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      opacity: .9;
+    }
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      display: block;
+      padding: 15px 18px;
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #7b1625;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #7b1625;
+      font-size: 24px;
+    }
+
+    .description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #7b1625;
+    }
+
+    .button {
+      width: 100%;
+      border: none;
+      background: #7b1625;
+      color: white;
+      padding: 14px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #64111e;
+    }
+
+    .button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: #7b1625;
+      font-weight: bold;
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+
+    .error {
+      background: #fdecec;
+      color: #a40000;
+      border: 1px solid #f1b5b5;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .result-header {
+      background: #7b1625;
+      color: white;
+      padding: 15px 18px;
+      font-weight: bold;
+    }
+
+    .result-body {
+      padding: 20px;
+    }
+
+    .result-row {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      padding: 13px 0;
+      gap: 15px;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .result-label {
+      width: 180px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .result-value {
+      flex: 1;
+    }
+
+    .status {
+      display: inline-block;
+      background: #7b1625;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .header-title h1 {
+        font-size: 17px;
+      }
+
+      .header-title p {
+        font-size: 12px;
+      }
+
+      .nav-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav a {
+        text-align: center;
+        border-bottom: 1px solid #eee;
+      }
+
+      main {
+        margin: 25px auto;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .result-row {
+        display: block;
+      }
+
+      .result-label {
+        width: auto;
+        margin-bottom: 5px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <div class="header-inner">
+
+      <img
+        class="logo"
+        src="https://drive.google.com/thumbnail?id=1CnyjeMZO9rJhcy4l6603m70sMGTlg30j&sz=w500"
+        alt="Logo KPU">
+
+      <div class="header-title">
+
+        <h1>SIDUMAS KPU Kabupaten Karimun</h1>
+
+        <p>Sistem Pengaduan Masyarakat</p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <nav>
+
+    <div class="nav-inner">
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a href="pengaduan.html">
+        Buat Pengaduan
+      </a>
+
+      <a
+        href="riwayat.html"
+        class="active">
+        Riwayat Pengaduan
+      </a>
+
+      <a href="statistik.html">
+        Statistik
+      </a>
+
+      <a href="admin.html">
+        Admin
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <main>
+
+    <div class="card">
+
+      <h2>Riwayat Pengaduan</h2>
+
+      <div class="description">
+
+        Masukkan Nomor Pengaduan dan Kode Verifikasi
+        yang diperoleh setelah pengaduan berhasil dikirim.
+
+      </div>
+
+
+      <form id="statusForm">
+
+        <div class="form-group">
+
+          <label for="nomorPengaduan">
+            Nomor Pengaduan
+          </label>
+
+          <input
+            type="text"
+            id="nomorPengaduan"
+            placeholder="Contoh: DUMAS-KRM-2026-00001"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="kodeVerifikasi">
+            Kode Verifikasi
+          </label>
+
+          <input
+            type="text"
+            id="kodeVerifikasi"
+            placeholder="Masukkan kode verifikasi"
+            maxlength="20"
+            required>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="button"
+          id="submitButton">
+
+          Cek Status Pengaduan
+
+        </button>
+
+      </form>
+
+
+      <div
+        class="loading"
+        id="loading">
+
+        Memeriksa data pengaduan...
+
+      </div>
+
+
+      <div
+        class="message error"
+        id="errorMessage">
+      </div>
+
+
+      <div
+        class="result"
+        id="result">
+
+        <div class="result-header">
+
+          Informasi Pengaduan
+
+        </div>
+
+        <div class="result-body">
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Nomor Pengaduan
+            </div>
+
+            <div
+              class="result-value"
+              id="resultNumber">
+            </div>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Tanggal Pengaduan
+            </div>
+
+            <div
+              class="result-value"
+              id="resultDate">
+            </div>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Nama Pelapor
+            </div>
+
+            <div
+              class="result-value"
+              id="resultReporter">
+            </div>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Nama Terlapor
+            </div>
+
+            <div
+              class="result-value"
+              id="resultReported">
+            </div>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Jabatan Terlapor
+            </div>
+
+            <div
+              class="result-value"
+              id="resultPosition">
+            </div>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <div class="result-label">
+              Status
+            </div>
+
+            <div
+              class="result-value"
+              id="resultStatus">
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    © KPU Kabupaten Karimun — SIDUMAS
+
+  </footer>
+
+
+  <script>
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyNX1pZsI-zsMtZj1ATUwo_M-Xq_yykqi6AxGdrV0vyyfqQXPPJFyKbHkx-MyyZ3IoEqg/exec";
+
+
+    const form =
+      document.getElementById(
+        "statusForm"
+      );
+
+
+    const button =
+      document.getElementById(
+        "submitButton"
+      );
+
+
+    const loading =
+      document.getElementById(
+        "loading"
+      );
+
+
+    const errorMessage =
+      document.getElementById(
+        "errorMessage"
+      );
+
+
+    const result =
+      document.getElementById(
+        "result"
+      );
+
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        errorMessage.style.display =
+          "none";
+
+        result.style.display =
+          "none";
+
+        loading.style.display =
+          "block";
+
+        button.disabled =
+          true;
+
+
+        const nomorPengaduan =
+          document
+            .getElementById(
+              "nomorPengaduan"
+            )
+            .value
+            .trim();
+
+
+        const kodeVerifikasi =
+          document
+            .getElementById(
+              "kodeVerifikasi"
+            )
+            .value
+            .trim()
+            .toUpperCase();
+
+
+        try {
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body:
+                  JSON.stringify({
+
+                    action:
+                      "checkStatus",
+
+                    nomorPengaduan:
+                      nomorPengaduan,
+
+                    kodeVerifikasi:
+                      kodeVerifikasi
+
+                  })
+
+              }
+            );
+
+
+          const data =
+            await response.json();
+
+
+          if (!data.success) {
+
+            throw new Error(
+              data.message ||
+              "Data pengaduan tidak ditemukan."
+            );
+
+          }
+
+
+          document
+            .getElementById(
+              "resultNumber"
+            )
+            .textContent =
+              data.nomorPengaduan || "-";
+
+
+          document
+            .getElementById(
+              "resultDate"
+            )
+            .textContent =
+              data.tanggalPengaduan || "-";
+
+
+          document
+            .getElementById(
+              "resultReporter"
+            )
+            .textContent =
+              data.namaPelapor || "-";
+
+
+          document
+            .getElementById(
+              "resultReported"
+            )
+            .textContent =
+              data.namaTerlapor || "-";
+
+
+          document
+            .getElementById(
+              "resultPosition"
+            )
+            .textContent =
+              data.jabatanTerlapor || "-";
+
+
+          document
+            .getElementById(
+              "resultStatus"
+            )
+            .innerHTML =
+              '<span class="status">' +
+              (
+                data.status || "-"
+              ) +
+              '</span>';
+
+
+          result.style.display =
+            "block";
+
+
+        } catch (error) {
+
+          errorMessage.textContent =
+            error.message ||
+            "Terjadi kesalahan saat memeriksa pengaduan.";
+
+          errorMessage.style.display =
+            "block";
+
+        } finally {
+
+          loading.style.display =
+            "none";
+
+          button.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
